@@ -399,8 +399,12 @@ class Brizy_Editor_Forms_Api {
 
 		if ( $response instanceof \BrizyForms\Model\RedirectResponse ) {
 			$this->success( $response );
-		} else {
+		} elseif ( $response instanceof \BrizyForms\Model\Response ) {
 
+
+
+
+			// return account
 		}
 
 		$this->error( 501, 'Not implemented' );
