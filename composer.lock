@@ -54,12 +54,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:bagrinsergiu/Brizy-Forms-SDK.git",
-                "reference": "e0589870afb4a48569d1ab7afd87c4ab9ee667e4"
+                "reference": "da34404e57b411d562c93129e3373c8737372982"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bagrinsergiu/Brizy-Forms-SDK/zipball/e0589870afb4a48569d1ab7afd87c4ab9ee667e4",
-                "reference": "e0589870afb4a48569d1ab7afd87c4ab9ee667e4",
+                "url": "https://api.github.com/repos/bagrinsergiu/Brizy-Forms-SDK/zipball/da34404e57b411d562c93129e3373c8737372982",
+                "reference": "da34404e57b411d562c93129e3373c8737372982",
                 "shasum": ""
             },
             "require": {
@@ -68,9 +68,13 @@
                 "drewm/mailchimp-api": "~2.2",
                 "ext-curl": "*",
                 "ext-json": "*",
+                "getresponse/getresponse": "dev-master",
                 "guzzlehttp/guzzle": "4.*",
                 "php": ">=5.4.0",
                 "sendinblue/api-v3-sdk": "~5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
             },
             "type": "library",
             "autoload": {
@@ -87,7 +91,7 @@
                 "source": "https://github.com/bagrinsergiu/Brizy-Forms-SDK/tree/master",
                 "issues": "https://github.com/bagrinsergiu/Brizy-Forms-SDK/issues"
             },
-            "time": "2018-11-22T09:33:05+00:00"
+            "time": "2018-11-26T15:41:49+00:00"
         },
         {
             "name": "campaignmonitor/createsend-php",
@@ -189,6 +193,53 @@
             "description": "Super-simple, minimum abstraction MailChimp API v3 wrapper",
             "homepage": "https://github.com/drewm/mailchimp-api",
             "time": "2018-02-16T15:31:05+00:00"
+        },
+        {
+            "name": "getresponse/getresponse",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GetResponse/getresponse-api-php.git",
+                "reference": "e1137adbddaa96bba6af6c1b5e8aeb50e9036e0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GetResponse/getresponse-api-php/zipball/e1137adbddaa96bba6af6c1b5e8aeb50e9036e0a",
+                "reference": "e1137adbddaa96bba6af6c1b5e8aeb50e9036e0a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/GetResponseAPI3.class.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pawel Maslak",
+                    "email": "pawel.maslak@getresponse.com"
+                },
+                {
+                    "name": "Grzegorz Struczynski",
+                    "email": "grzegorz.struczynski@getresponse.com"
+                }
+            ],
+            "description": "GetResponse API v3 client library.",
+            "homepage": "https://github.com/GetResponse/getresponse-api-php",
+            "keywords": [
+                "api",
+                "email",
+                "getresponse"
+            ],
+            "time": "2018-03-02T08:40:50+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

@@ -20,9 +20,20 @@ class Brizy_Editor_Forms_Account extends Brizy_Admin_Serializable {
 	 */
 	public function __construct( $data = null ) {
 		if ( ! is_array( $data ) ) {
-			$this->data = array();
+			$this->data = array( 'id' => md5( time().rand(0,10000) ) );
 		}
 		$this->data = $data;
+	}
+
+	/**
+	 * @param string[] $data
+	 *
+	 * @return Brizy_Editor_Forms_Account
+	 */
+	public function setData( $data ) {
+		$this->data = $data;
+
+		return $this;
 	}
 
 	/**

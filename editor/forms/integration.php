@@ -134,6 +134,10 @@ class Brizy_Editor_Forms_Integration extends Brizy_Admin_Serializable {
 		return $this->accounts;
 	}
 
+	public function addAccount( Brizy_Editor_Forms_Account $account ) {
+		$this->accounts[] = $account;
+	}
+
 	/**
 	 * @param array $accounts
 	 *

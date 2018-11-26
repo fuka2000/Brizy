@@ -395,16 +395,23 @@ class Brizy_Editor_Forms_Api {
 			$this->error( 400, "Invalid integration service" );
 		}
 
-		$response = $service->authenticate();
+		$response = $service->authenticate( array( 'redirect_uri' => $this->generateCallback( $form->getId(), $integration->getId() ) ) );
 
 		if ( $response instanceof \BrizyForms\Model\RedirectResponse ) {
 			$this->success( $response );
 		} elseif ( $response instanceof \BrizyForms\Model\Response ) {
 
+			$data = json_decode( file_get_contents( 'php://input' ) );
 
+			$account = new Brizy_Editor_Forms_Account();
+			$account->setData( get_object_vars( $data ) );
 
+			$integration->addAccount( $account );
 
-			// return account
+			$form->updateIntegration( $integration );
+			$manager->addForm( $form );
+
+			$this->success( $account );
 		}
 
 		$this->error( 501, 'Not implemented' );
