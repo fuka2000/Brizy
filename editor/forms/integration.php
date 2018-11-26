@@ -13,6 +13,7 @@ class Brizy_Editor_Forms_Integration extends Brizy_Admin_Serializable {
 	 */
 	protected $id;
 
+
 	/**
 	 * @var array
 	 */
@@ -74,16 +75,28 @@ class Brizy_Editor_Forms_Integration extends Brizy_Admin_Serializable {
 	}
 
 	public static function createFromJson( $json_obj ) {
-		$instance = new self();
+		$instance = null;
 		if ( is_object( $json_obj ) ) {
+			$instance = new self( $json_obj->id );
 
-			$instance->setId( $json_obj->id );
-			$instance->setAccounts( $json_obj->accounts );
-			$instance->setFields( $json_obj->fields );
-			$instance->setGroups( $json_obj->groups );
-			$instance->setUsedAccount( $json_obj->usedAccount );
-			$instance->setUsedGroup( $json_obj->usedGroup );
-			$instance->setFieldsMap( $json_obj->fieldsMap );
+			if ( isset( $json_obj->accounts ) ) {
+				$instance->setAccounts( $json_obj->accounts );
+			}
+			if ( isset( $json_obj->fields ) ) {
+				$instance->setFields( $json_obj->fields );
+			}
+			if ( isset( $json_obj->groups ) ) {
+				$instance->setGroups( $json_obj->groups );
+			}
+			if ( isset( $json_obj->usedAccount ) ) {
+				$instance->setUsedAccount( $json_obj->usedAccount );
+			}
+			if ( isset( $json_obj->usedGroup ) ) {
+				$instance->setUsedGroup( $json_obj->usedGroup );
+			}
+			if ( isset( $json_obj->fieldsMap ) ) {
+				$instance->setFieldsMap( $json_obj->fieldsMap );
+			}
 
 		}
 
@@ -203,4 +216,24 @@ class Brizy_Editor_Forms_Integration extends Brizy_Admin_Serializable {
 
 		return $this;
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getFieldsMap() {
+		return $this->fieldsMap;
+	}
+
+	/**
+	 * @param mixed $fieldsMap
+	 *
+	 * @return Brizy_Editor_Forms_Integration
+	 */
+	public function setFieldsMap( $fieldsMap ) {
+		$this->fieldsMap = $fieldsMap;
+
+		return $this;
+	}
+
+
 }

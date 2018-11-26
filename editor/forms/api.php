@@ -280,18 +280,14 @@ class Brizy_Editor_Forms_Api {
 			$this->error( 400, "Invalid form id" );
 		}
 
-		$integrationId = $_REQUEST['integration'];
-		if ( ! $integrationId ) {
-			$this->error( 400, "Invalid form integration id" );
-		}
+		$integration = Brizy_Editor_Forms_Integration::createFromJson( json_decode( file_get_contents( 'php://input' ) ) );
 
-		if ( $form->getIntegration( $integrationId ) ) {
+		if ( $form->getIntegration( $integration->getid() ) ) {
 			$this->error( 400, "This integration is already created" );
 		}
 
-		$integration = Brizy_Editor_Forms_Integration::createFromJson( json_decode(file_get_contents( 'php://input' )) );
-
 		if ( $form->addIntegration( $integration ) ) {
+			$manager->addForm( $form );
 			$this->success( $integration );
 		}
 
@@ -330,12 +326,12 @@ class Brizy_Editor_Forms_Api {
 		if ( ! $form ) {
 			$this->error( 400, "Invalid form id" );
 		}
-		$integrationJSON = $_REQUEST['integration'];
-		if ( ! $integrationJSON ) {
-			$this->error( 400, "Invalid form integration" );
-		}
 
-		$integration = Brizy_Editor_Forms_Integration::createFromJson( json_decode(file_get_contents( 'php://input' )) );
+		$integration = Brizy_Editor_Forms_Integration::createFromJson( json_decode( file_get_contents( 'php://input' ) ) );
+
+		if ( ! $form->getIntegration( $integration->getid() ) ) {
+			$this->error( 404, "Integration not found" );
+		}
 
 		$integration = $form->updateIntegration( $integration );
 
