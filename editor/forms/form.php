@@ -162,14 +162,12 @@ class Brizy_Editor_Forms_Form extends Brizy_Admin_Serializable {
 	 * @return Brizy_Editor_Forms_Form
 	 * @throws Exception
 	 */
-	public static function create_from_json( $json_obj ) {
+	public static function createFromJson( $json_obj ) {
 		$instance = new self();
 
 		if ( ! isset( $json_obj ) ) {
 			throw new Exception( 'Bad Request', 400 );
 		}
-
-		$_POST['form'] = get_object_vars( $json_obj );
 
 		if ( is_object( $json_obj ) ) {
 			$instance->setId( $json_obj->id );

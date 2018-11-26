@@ -151,7 +151,7 @@ class Brizy_Editor_Forms_Api {
 			$this->authorize();
 
 			$manager           = new Brizy_Editor_Forms_Manager( Brizy_Editor_Project::get() );
-			$instance          = Brizy_Editor_Forms_Form::create_from_json( stream_get_contents( STDIN ) );
+			$instance          = Brizy_Editor_Forms_Form::createFromJson( stream_get_contents( STDIN ) );
 			$validation_result = $instance->validate();
 
 			if ( $validation_result === true ) {
