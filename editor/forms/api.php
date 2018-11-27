@@ -5,8 +5,6 @@
  * Date: 11/19/18
  * Time: 4:56 PM
  */
-include_once BRIZY_PLUGIN_PATH . "/editor/forms/integration-config.php";
-
 
 class Brizy_Editor_Forms_Api {
 

@@ -43,6 +43,10 @@ class Brizy_Editor_Forms_Account extends Brizy_Admin_Serializable {
 		return serialize( $this->jsonSerialize() );
 	}
 
+	public function unserialize($serialized) {
+		$this->data = unserialize($serialized);
+	}
+
 	public function jsonSerialize() {
 		return $this->data;
 	}
@@ -72,7 +76,7 @@ class Brizy_Editor_Forms_Account extends Brizy_Admin_Serializable {
 		}
 
 		if ( is_object( $json_obj ) ) {
-			return self::createFromSerializedData( $json_obj );
+			return self::createFromSerializedData( get_object_vars($json_obj) );
 		}
 
 		return new self();

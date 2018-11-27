@@ -84,7 +84,9 @@ class Brizy_Editor_Forms_Integration extends Brizy_Admin_Serializable {
 			$instance = new self( $json_obj->id );
 
 			if ( isset( $json_obj->accounts ) ) {
-				$instance->setAccounts( $json_obj->accounts );
+				foreach($json_obj->accounts as $account) {
+					$instance->addAccount( Brizy_Editor_Forms_Account::createFromJson($account) );
+				}
 			}
 			if ( isset( $json_obj->fields ) ) {
 				$instance->setFields( $json_obj->fields );
