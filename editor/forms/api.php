@@ -5,6 +5,8 @@
  * Date: 11/19/18
  * Time: 4:56 PM
  */
+include_once BRIZY_PLUGIN_PATH . "/editor/forms/integration-config.php";
+
 
 class Brizy_Editor_Forms_Api {
 
@@ -395,24 +397,17 @@ class Brizy_Editor_Forms_Api {
 			$this->error( 400, "Invalid integration service" );
 		}
 
-		$response = $service->authenticate( array( 'redirect_uri' => $this->generateCallback( $form->getId(), $integration->getId() ) ) );
+		$data = json_decode( file_get_contents( 'php://input' ) );
 
-		if ( $response instanceof \BrizyForms\Model\RedirectResponse ) {
-			$this->success( $response );
-		} elseif ( $response instanceof \BrizyForms\Model\Response ) {
+		$account = new Brizy_Editor_Forms_Account();
+		$account->setData( get_object_vars( $data ) );
 
-			$data = json_decode( file_get_contents( 'php://input' ) );
+		$integration->addAccount( $account );
 
-			$account = new Brizy_Editor_Forms_Account();
-			$account->setData( get_object_vars( $data ) );
+		$form->updateIntegration( $integration );
+		$manager->addForm( $form );
 
-			$integration->addAccount( $account );
-
-			$form->updateIntegration( $integration );
-			$manager->addForm( $form );
-
-			$this->success( $account );
-		}
+		$this->success( $account );
 
 		$this->error( 501, 'Not implemented' );
 	}

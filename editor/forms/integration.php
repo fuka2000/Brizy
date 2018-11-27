@@ -13,6 +13,10 @@ class Brizy_Editor_Forms_Integration extends Brizy_Admin_Serializable {
 	 */
 	protected $id;
 
+	/**
+	 * @var string
+	 */
+	protected $serviceApplicationId;
 
 	/**
 	 * @var array
@@ -97,7 +101,6 @@ class Brizy_Editor_Forms_Integration extends Brizy_Admin_Serializable {
 			if ( isset( $json_obj->fieldsMap ) ) {
 				$instance->setFieldsMap( $json_obj->fieldsMap );
 			}
-
 		}
 
 		return $instance;
