@@ -20,9 +20,10 @@ class Brizy_Editor_Forms_Account extends Brizy_Admin_Serializable {
 	 */
 	public function __construct( $data = null ) {
 		if ( ! is_array( $data ) ) {
-			$this->data = array( 'id' => md5( time().rand(0,10000) ) );
+			$this->data = array( 'id' => md5( time() . rand( 0, 10000 ) ) );
+		} else {
+			$this->data = $data;
 		}
-		$this->data = $data;
 	}
 
 	/**
@@ -31,7 +32,9 @@ class Brizy_Editor_Forms_Account extends Brizy_Admin_Serializable {
 	 * @return Brizy_Editor_Forms_Account
 	 */
 	public function setData( $data ) {
-		$this->data = $data;
+		$id               = $this->data['id'];
+		$this->data       = $data;
+		$this->data['id'] = $id;
 
 		return $this;
 	}
@@ -43,8 +46,8 @@ class Brizy_Editor_Forms_Account extends Brizy_Admin_Serializable {
 		return serialize( $this->jsonSerialize() );
 	}
 
-	public function unserialize($serialized) {
-		$this->data = unserialize($serialized);
+	public function unserialize( $serialized ) {
+		$this->data = unserialize( $serialized );
 	}
 
 	public function jsonSerialize() {
@@ -76,7 +79,7 @@ class Brizy_Editor_Forms_Account extends Brizy_Admin_Serializable {
 		}
 
 		if ( is_object( $json_obj ) ) {
-			return self::createFromSerializedData( get_object_vars($json_obj) );
+			return self::createFromSerializedData( get_object_vars( $json_obj ) );
 		}
 
 		return new self();
